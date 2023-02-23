@@ -1,0 +1,15 @@
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\bin\Debug\net6.0\CalculosRendaFixa.exe
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\bin\Debug\net6.0\CalculosRendaFixa.deps.json
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\bin\Debug\net6.0\CalculosRendaFixa.runtimeconfig.json
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\bin\Debug\net6.0\CalculosRendaFixa.dll
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\bin\Debug\net6.0\CalculosRendaFixa.pdb
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.csproj.AssemblyReference.cache
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.AssemblyInfoInputs.cache
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.AssemblyInfo.cs
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.csproj.CoreCompileInputs.cache
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.dll
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\refint\CalculosRendaFixa.dll
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.pdb
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\CalculosRendaFixa.genruntimeconfig.cache
+C:\Users\lucasnascimento\Desktop\Script\CalculosRendaFixa\CalculosRendaFixa\obj\Debug\net6.0\ref\CalculosRendaFixa.dll
