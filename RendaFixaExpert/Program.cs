@@ -19,7 +19,8 @@ do
     Console.WriteLine("################################");
     Console.WriteLine("Digite 1 - Quanto meus investimentos rendeu ?");
     Console.WriteLine("Digite 2 - Calcular minhas rentabilidades ?");
-    Console.WriteLine("Digite 3 - Sair ?");
+    Console.WriteLine("Digite 3 - Calcular meus aportes mensais ?");
+    Console.WriteLine("Digite 4 - Sair ?");
     Console.WriteLine("################################");
     Console.WriteLine("");
 
@@ -80,12 +81,53 @@ do
             {
                 Console.WriteLine($"{PadRight($"{rentabilidade.Key}", 15)}{PadRight($"{periodos[rentabilidade.Index]}", 15)}{PadRight($"{rentabilidade.Value.ToString("0.#")}%", 15)}");
             }
-
             Console.WriteLine($"Rentabilidade acumulada de todos os periodos adicionados: {rentabilidadeAcumulada.ToString("0.#")}%");
-
             break;
 
         case "3":
+
+            double calculo = 0;
+
+            Dictionary<string,double> mesesDict = new Dictionary<string,double>();
+
+            Console.WriteLine($"Por quantos meses você pensa em investir ?");
+            var meses = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Valor inicial de investimento ?");
+            var valorInicial = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Adicione aqui a taxa de rendimento ?");
+            var taxaRendimento = int.Parse(Console.ReadLine());
+
+            for (int mesesIndex = 0; mesesIndex < meses; mesesIndex++)
+            {
+                if (mesesIndex == 0)
+                {
+                    mesesDict.Add(ListaComMesesDoAno()[mesesIndex], valorInicial);
+                    continue;
+                }
+
+                if (mesesIndex == 1)
+                {
+                    calculo = (1 + (taxaRendimento / 100.0)) * mesesDict.Values.ToList()[mesesIndex - 1] + valorInicial;
+                    mesesDict.Add(ListaComMesesDoAno()[mesesIndex], calculo);
+                    continue;
+                }
+
+                calculo = (1 + (taxaRendimento / 100.0)) * mesesDict.Values.ToList()[mesesIndex - 1];
+
+                string mesAtual = ListaComMesesDoAno()[mesesIndex];
+                mesesDict.Add(mesAtual, calculo);
+            }
+
+            foreach (KeyValuePair<string, double> keyValuePair in mesesDict)
+            {
+                Console.WriteLine($"Mês {keyValuePair.Key} - Valor {keyValuePair.Value:C}");
+            }
+
+            break;
+
+        case "4":
             stopLoop = true;
             break;
 
@@ -130,4 +172,14 @@ void ZerarVariaveis()
     valorFormatadoValorAnterior = "";
     result = 0;
     rentabilidadePorPeriodo = new Dictionary<int, decimal>();
+}
+
+List<string> ListaComMesesDoAno()
+{
+    List<string> meses = new List<string>();
+    for (int i = 1; i <= 12; i++)
+    {
+        meses.Add(DateTimeFormatInfo.CurrentInfo.GetMonthName(i));
+    }
+    return meses;
 }
