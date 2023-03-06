@@ -20,7 +20,8 @@ do
     Console.WriteLine("Digite 1 - Quanto meus investimentos rendeu ?");
     Console.WriteLine("Digite 2 - Calcular minhas rentabilidades ?");
     Console.WriteLine("Digite 3 - Calcular meus aportes mensais ?");
-    Console.WriteLine("Digite 4 - Sair ?");
+    Console.WriteLine("Digite 4 - Como saber a taxa anual em meses/dias ?");
+    Console.WriteLine("Digite 5 - Sair ?");
     Console.WriteLine("################################");
     Console.WriteLine("");
 
@@ -30,10 +31,10 @@ do
     {
         case "1":
             Console.WriteLine("Qual foi o seu valor investido ?");
-            valorFormatadoValorAnterior = FormatadorDecimal(Console.ReadLine(),"N2");
+            valorFormatadoValorAnterior = FormatadorDecimal(Console.ReadLine(), "N2");
 
             Console.WriteLine("Quantos % de rendimento");
-            valorFormatadoTaxaRendimento = FormatadorDecimal(Console.ReadLine(),"N2");
+            valorFormatadoTaxaRendimento = FormatadorDecimal(Console.ReadLine(), "N2");
 
             if (decimal.TryParse(valorFormatadoValorAnterior, NumberStyles.Currency, culture, out valorDecimal1) && decimal.TryParse(valorFormatadoTaxaRendimento, NumberStyles.Currency, culture, out valorDecimal2))
                 Console.WriteLine($"Valor acumulado : {CalcularAcumuloTaxa(valorDecimal1, valorDecimal2).ToString("C2", culture)}");
@@ -43,12 +44,12 @@ do
 
             decimal rentabilidadeAcumulada = 1;
             decimal valorAntigo, valorNovo, resultado;
-            List<string> periodos  = new List<string>();
+            List<string> periodos = new List<string>();
 
             Console.WriteLine("Você quer ver/comparar sua rentabilidade de quantos dias ?");
             var dias = int.Parse(Console.ReadLine());
 
-            AdicionandoPeriodos(dias,ref periodos);
+            AdicionandoPeriodos(dias, ref periodos);
 
             for (int g = 1; g < periodos.Count; g++)
             {
@@ -88,7 +89,7 @@ do
 
             double calculo = 0;
 
-            Dictionary<string,double> mesesDict = new Dictionary<string,double>();
+            Dictionary<string, double> mesesDict = new Dictionary<string, double>();
 
             Console.WriteLine($"Por quantos meses você pensa em investir ?");
             var meses = int.Parse(Console.ReadLine());
@@ -128,6 +129,26 @@ do
             break;
 
         case "4":
+
+            Console.WriteLine($"Digite D Para dia e M para Mes");
+            string input = Console.ReadLine();
+
+            if (!(input.ToUpper() == "D") && !(input.ToUpper() == "M"))
+                break;
+    
+            Console.WriteLine($"Digite o valor da taxa anual");
+            string taxaAnual = FormatadorDecimal(Console.ReadLine(), "N2");
+
+            double valor = 0;
+            int periodosInput = input == "D" ? periodosInput = 257 : 12;
+            if (double.TryParse(taxaAnual, NumberStyles.Currency, culture, out valor))
+            {
+                double x = CalcularValorTaxaAnualPorPeriodos(valor, periodosInput);
+                Console.WriteLine($"A taxa de {(valor / 100)}% em {(input == "D" ? "Dias" : "Meses")} é {Math.Abs(x / 100)}%");
+            }
+            break;
+
+        case "5":
             stopLoop = true;
             break;
 
@@ -137,6 +158,7 @@ do
     i += 1;
 } while (!stopLoop);
 
+double  CalcularValorTaxaAnualPorPeriodos(double valor, int periodo) => Math.Pow(1 + valor / 100, 1.0 / periodo) - 1;
 decimal CalcularTaxaRentabilidadeEntreDoisValores(decimal valorAnterior, decimal valorNovo) => ((valorNovo / valorAnterior) - 1) * 100;
 decimal CalcularAcumuloTaxa(decimal valorInvestido, decimal taxaRendimento) => valorInvestido * (1 + (taxaRendimento / 100));
 decimal CalcularRentabilidadeAcumuladaTodosPeriodos(Dictionary<int, decimal> rentabilidadePorPeriodo, int j)
@@ -183,3 +205,4 @@ List<string> ListaComMesesDoAno()
     }
     return meses;
 }
+
