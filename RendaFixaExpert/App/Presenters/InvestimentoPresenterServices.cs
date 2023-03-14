@@ -7,12 +7,12 @@ using RendaFixaExpert.App.Presenters.Interfaces;
 
 namespace RendaFixaExpert.App.Presenters
 {
-    public class InvestimentoPresenter : ICalculosInvestimentosRepository
+    public class InvestimentoPresenterServices : ICalculosInvestimentos
     {
         /// <summary>
         /// Construtor
         /// </summary>
-        public InvestimentoPresenter()
+        public InvestimentoPresenterServices()
         {
         }
 

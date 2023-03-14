@@ -15,10 +15,10 @@ namespace RendaFixaExpert.App.Controller
     public class InvestimentoController : ControllerBase
     {
         //Injeção de dependência.
-        private readonly ICalculosInvestimentosRepository _presenter;
+        private readonly ICalculosInvestimentos _presenter;
 
         //Construtor
-        public InvestimentoController(ICalculosInvestimentosRepository presenter)
+        public InvestimentoController(ICalculosInvestimentos presenter)
         {
             _presenter = presenter;
         }

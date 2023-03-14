@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 
 //Configuração de injeção de dependencias.
-builder.Services.AddTransient<ICalculosInvestimentosRepository, InvestimentoPresenter>();
+builder.Services.AddTransient<ICalculosInvestimentos, InvestimentoPresenterServices>();
 
 var app = builder.Build();
 app.UseRouting();

@@ -9,7 +9,7 @@ namespace RendaFixaExpert.App.Presenters.Interfaces
     /// <summary>
     /// 
     /// </summary>
-    public interface ICalculosInvestimentosRepository
+    public interface ICalculosInvestimentos
     {
         /// <summary>
         /// Calcular taxa de rentabilidade entre dois valores
