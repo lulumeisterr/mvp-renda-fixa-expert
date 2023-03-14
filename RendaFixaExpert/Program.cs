@@ -1,7 +1,25 @@
 ﻿// See https://aka.ms/new-consolIne-template for more information
-using System.Drawing;
-using System.Globalization;
 
+using System.Text.Json.Serialization;
+using RendaFixaExpert.App.Presenters;
+using RendaFixaExpert.App.Presenters.Interfaces;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
+
+//Configuração de injeção de dependencias.
+builder.Services.AddTransient<ICalculosInvestimentosRepository, InvestimentoPresenter>();
+
+var app = builder.Build();
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.Run();
+/*
 CultureInfo culture = CultureInfo.GetCultureInfo("pt-BR");
 
 var i = 1;
@@ -205,4 +223,4 @@ List<string> ListaComMesesDoAno()
     }
     return meses;
 }
-
+*/
