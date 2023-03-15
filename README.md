@@ -22,7 +22,7 @@
 
 Controller é responsável por receber as requisições HTTP e encaminhar os dados para o Presenter. 
 
-O Presenter é responsável por receber esses dados do Controller, processá-los utilizando a lógica de negócios e retornar as informações para a View. A View, por sua vez, é responsável por renderizar os dados recebidos pelo Presenter para serem exibidos ao usuário.
+O Presenter é responsável por receber esses dados do Controller, processá-los utilizando a lógica de negócios.
 
 O Model é responsável por representar os dados da aplicação e o acesso a eles é feito através da camada de Data Access, que é responsável por fazer as operações de leitura e gravação desses dados. O Presenter utiliza as informações do Model para realizar as operações de negócios necessárias.
 
