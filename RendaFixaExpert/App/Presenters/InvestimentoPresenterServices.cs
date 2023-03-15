@@ -35,38 +35,38 @@ namespace RendaFixaExpert.App.Presenters
         public async Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(Rentabilidade rentabilidadeRequest)
         {
             List<Rentabilidade> listaRentabilidade = new List<Rentabilidade>();
-            var dias = rentabilidadeRequest.Dias;
-            Rentabilidade? rentabilidade = null;
+            int dias = rentabilidadeRequest.Dias;
+            Rentabilidade rentabilidade = new Rentabilidade();
 
-            if (dias > 0)
+            if (dias > 0 && rentabilidadeRequest.ListValorAportados != null && rentabilidadeRequest.ListValorAportados.Count >= 2)
             {
-                for (int i = 0; i < rentabilidadeRequest?.ListValorAportados?.Count; i++)
+                rentabilidade = new Rentabilidade
                 {
-                    if(i == 0) {
-                        rentabilidade = new Rentabilidade
-                        {
-                            Dias = 1,
-                            ValorAportado = rentabilidadeRequest.ListValorAportados[0],
-                            RentabilidadePorDia = 0
-                        };
-                        listaRentabilidade.Add(rentabilidade);
-                        continue;
-                    }
-                    var valorInicial = rentabilidadeRequest.ListValorAportados[i - 1];
-                    var valorFinal = rentabilidadeRequest.ListValorAportados[i];
-                    var valorAportado = valorFinal;
-                    var dia = i+1;
+                    Dias = 1,
+                    ValorAportado = rentabilidadeRequest.ListValorAportados[0],
+                    RentabilidadePorDia = 0
+                };
+                listaRentabilidade.Add(rentabilidade);
 
-                    rentabilidade = new Rentabilidade
-                    {
-                        Dias = dia++,
-                        ValorAportado = valorAportado,
-                        RentabilidadePorDia = ((valorFinal / valorInicial) - 1) * 100
-                    };
+                foreach (var valorAportado in rentabilidadeRequest.ListValorAportados.Skip(1))
+                {
+                    rentabilidade = CalcularRentabilidade(dias, listaRentabilidade.Last().ValorAportado, valorAportado);
                     listaRentabilidade.Add(rentabilidade);
                 }
             }
             return await Task.FromResult(listaRentabilidade);
         }
+
+        #region Calcular rentabilidade
+        private Rentabilidade CalcularRentabilidade(int dias, decimal valorInicial, decimal valorFinal)
+        {
+            return new Rentabilidade
+            {
+                Dias = dias++,
+                ValorAportado = valorFinal,
+                RentabilidadePorDia = ((valorFinal / valorInicial) - 1) * 100
+            };
+        }
+        #endregion
     }
 }
