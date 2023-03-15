@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jNKvvI2XmLVnTniqL1CovHQn7D/GxG99HvXUksQbrdmoPzLsWgB7i79epR/0fCGFl+JGNrZbQ3p+c3f1a+z1Uw==",
+  "dgSpecHash": "HWPZ1ieQxSGfhLtAengS3SWwLJWOu8NNAe2xfYmlTL1SrHhWSfHNGF0N3+WZeAEuu6fa/7/xzupSmNENIbrz4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Desenvolvimento\\aplicacoes\\renda-fixa-expert-c-\\RendaFixaExpert\\RendaFixaExpert.csproj",
+  "projectFilePath": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Desenvolvimento\\aplicacoes\\mvp-renda-fixa-expert\\RendaFixaExpert\\RendaFixaExpert.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

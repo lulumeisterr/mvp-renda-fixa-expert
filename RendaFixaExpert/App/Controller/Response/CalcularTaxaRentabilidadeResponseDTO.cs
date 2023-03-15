@@ -1,15 +1,17 @@
-﻿namespace RendaFixaExpert.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RendaFixaExpert.Model;
+
+namespace RendaFixaExpert.Response
 {
     /// <summary>
-    /// Rentabilidade do investimento
+    /// Classe modelo que representam os dados que serão manipulados
     /// </summary>
-    public class Rentabilidade
+    public class CalcularTaxaRentabilidadeResponseDTO
     {
-        /// <summary>
-        /// Valor antigo.
-        /// </summary>
-        public List<decimal>? ListValorAportados { get; set; }
-
         /// <summary>
         /// Valor antigo.
         /// </summary>

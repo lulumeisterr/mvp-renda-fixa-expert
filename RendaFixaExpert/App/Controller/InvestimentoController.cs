@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Cryptography;
+using Microsoft.AspNetCore.Mvc;
 using RendaFixaExpert.App.Controller.Request;
 using RendaFixaExpert.App.Controller.Response;
 using RendaFixaExpert.App.Presenters.Interfaces;
+using RendaFixaExpert.Model;
+using RendaFixaExpert.Response;
 
 namespace RendaFixaExpert.App.Controller
 {
@@ -37,6 +40,36 @@ namespace RendaFixaExpert.App.Controller
                 AcumuloTaxaRendimento = resultado
             };
             return Ok(responseDto);
+        }
+
+        /// <summary>
+        /// Calcular suas rentabilidades
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>CalcularAcumuloTaxaRendimentoAsync</returns>
+        [HttpGet("/api/investimento/rentabilidades")]
+        public async Task<IActionResult> CalcularTaxaRentabilidadeAsync([FromBody] CalcularTaxaRentabilidadeRequest request)
+        {
+            List<CalcularTaxaRentabilidadeResponseDTO> rentabilidadeReponse = new List<CalcularTaxaRentabilidadeResponseDTO>();
+
+            var rentabilidade = new Rentabilidade
+            {
+                Dias = request.Dias,
+                ListValorAportados = request.ListValorAportados
+            };
+
+            foreach (Rentabilidade item in await _presenter.CalcularTaxaRentabilidadeAsync(rentabilidade))
+            {
+                var rentabilidades = new CalcularTaxaRentabilidadeResponseDTO
+                {
+                    Dias = item.Dias,
+                    ValorAportado = item.ValorAportado,
+                    RentabilidadePorDia = item.RentabilidadePorDia
+                };
+                rentabilidadeReponse?.Add(rentabilidades);
+            }
+
+            return Ok(rentabilidadeReponse);
         }
 
     }

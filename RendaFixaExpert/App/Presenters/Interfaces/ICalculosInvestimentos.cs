@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RendaFixaExpert.Model;
 
 namespace RendaFixaExpert.App.Presenters.Interfaces
 {
@@ -14,10 +15,9 @@ namespace RendaFixaExpert.App.Presenters.Interfaces
         /// <summary>
         /// Calcular taxa de rentabilidade entre dois valores
         /// </summary>
-        /// <param name="valorJaAportado">Valor ja aportado</param>
-        /// <param name="valorNovo">Novo valor a ser verificado a rentabilidade</param>
+        /// <param name="rentabilidadeRequest">Rentabilidade</param>
         /// <returns>CalcularTaxaRentabilidade</returns>
-        Task<decimal> CalcularTaxaRentabilidadeAsync(decimal valorNovo, decimal valorJaAportado);
+        Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(Rentabilidade rentabilidadeRequest);
 
         /// <summary>
         /// Identificar total de investimento a partir da taxa de rendimento.
