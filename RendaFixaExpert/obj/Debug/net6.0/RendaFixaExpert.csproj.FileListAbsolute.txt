@@ -36,3 +36,8 @@ C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-f
 C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\obj\Debug\net6.0\RendaFixaExpert.pdb
 C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\obj\Debug\net6.0\RendaFixaExpert.genruntimeconfig.cache
 C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\obj\Debug\net6.0\ref\RendaFixaExpert.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lucas\OneDrive\Área de Trabalho\Desenvolvimento\aplicacoes\mvp-renda-fixa-expert\RendaFixaExpert\obj\Debug\net6.0\RendaFixaExpert.MvcApplicationPartsAssemblyInfo.cs

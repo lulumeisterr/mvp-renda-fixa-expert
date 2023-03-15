@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-consolIne-template for more information
 
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
 using RendaFixaExpert.App.Presenters;
 using RendaFixaExpert.App.Presenters.Interfaces;
 
@@ -11,11 +12,21 @@ builder.Services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.
 //Configuração de injeção de dependencias.
 builder.Services.AddTransient<ICalculosInvestimentos, InvestimentoPresenterServices>();
 
+//add no pipeline de serviço da aplicação.
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Renda fixa expert", Version = "v1" });
+});
+
 var app = builder.Build();
 app.UseRouting();
-app.UseEndpoints(endpoints =>
+app.UseEndpoints(endpoints =>{endpoints.MapControllers();});
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    endpoints.MapControllers();
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Investimentos - API");
+    c.RoutePrefix = string.Empty;
 });
 
 app.Run();

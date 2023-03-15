@@ -31,7 +31,7 @@ namespace RendaFixaExpert.App.Controller
         /// </summary>
         /// <param name="request"></param>
         /// <returns>CalcularAcumuloTaxaRendimentoAsync</returns>
-        [HttpGet]
+        [HttpGet("/api/investimentos")]
         public async Task<IActionResult> CalcularAcumuloTaxaRendimentoAsync([FromQuery] CalcularAcumuloTaxaRendimentoRequest request)
         {
             decimal resultado = await _presenter.CalcularAcumuloTaxaRendimentoAsync(request.ValorInvestido, request.TaxaRendimento);
