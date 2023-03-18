@@ -36,6 +36,7 @@ namespace RendaFixaExpert.App.Presenters
         {
             List<Rentabilidade> listaRentabilidade = new List<Rentabilidade>();
             int dias = rentabilidadeRequest.Dias;
+            int auxDias = 1;
             Rentabilidade rentabilidade = new Rentabilidade();
 
             if (dias > 0 && rentabilidadeRequest.ListValorAportados != null && rentabilidadeRequest.ListValorAportados.Count >= 2)
@@ -50,6 +51,7 @@ namespace RendaFixaExpert.App.Presenters
 
                 foreach (var valorAportado in rentabilidadeRequest.ListValorAportados.Skip(1))
                 {
+                    dias = auxDias = auxDias + 1;
                     rentabilidade = CalcularRentabilidade(dias, listaRentabilidade.Last().ValorAportado, valorAportado);
                     listaRentabilidade.Add(rentabilidade);
                 }
