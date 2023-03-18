@@ -1,5 +1,6 @@
 # renda-fixa-expert-c#
-  Aprendendo conceitos e calculos de renda fixa por meio de programação
+  Aprendendo conceitos e calculos de renda fixa por meio de programação criando um projeto de código aberto que visa 
+  ajudar os investidores a tomar decisões informadas no mercado de renda fixa no Brasil. 
   
 # Padrão de projeto.
 
