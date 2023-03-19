@@ -21,7 +21,17 @@
         public decimal RentabilidadePorDia { get; set; }
 
         /// <summary>
-        /// Dias a ser rendidos
+        /// Data Inicio investimento
+        /// </summary>
+        public DateTime DataInicio { get; set; }
+
+        /// <summary>
+        /// Data fim investimendo
+        /// </summary>
+        public DateTime DataFim{ get; set; }
+
+        /// <summary>
+        /// Dias investidos
         /// </summary>
         public int Dias { get; set; }
     }

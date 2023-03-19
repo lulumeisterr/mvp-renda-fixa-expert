@@ -48,29 +48,19 @@ namespace RendaFixaExpert.App.Controller
         /// <param name="request"></param>
         /// <returns>CalcularAcumuloTaxaRendimentoAsync</returns>
         [HttpGet("/api/investimento/rentabilidades")]
-        public async Task<IActionResult> CalcularTaxaRentabilidadeAsync([FromBody] CalcularTaxaRentabilidadeRequest request)
+        public async IAsyncEnumerable<CalcularTaxaRentabilidadeResponseDTO> GetItemsAsync([FromBody] CalcularTaxaRentabilidadeRequest request)
         {
-            List<CalcularTaxaRentabilidadeResponseDTO> rentabilidadeReponse = new List<CalcularTaxaRentabilidadeResponseDTO>();
-
-            var rentabilidade = new Rentabilidade
-            {
-                Dias = request.Dias,
-                ListValorAportados = request.ListValorAportados
-            };
+            Rentabilidade rentabilidade = new Rentabilidade { ListValorAportados = request.ListValorAportados };
 
             foreach (Rentabilidade item in await _presenter.CalcularTaxaRentabilidadeAsync(rentabilidade))
             {
-                var rentabilidades = new CalcularTaxaRentabilidadeResponseDTO
+                yield return new CalcularTaxaRentabilidadeResponseDTO
                 {
                     Dias = item.Dias,
                     ValorAportado = item.ValorAportado,
                     RentabilidadePorDia = item.RentabilidadePorDia
                 };
-                rentabilidadeReponse?.Add(rentabilidades);
             }
-
-            return Ok(rentabilidadeReponse);
         }
-
     }
 }

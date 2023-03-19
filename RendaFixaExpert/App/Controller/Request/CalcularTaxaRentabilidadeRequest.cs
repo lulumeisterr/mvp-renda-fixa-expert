@@ -16,10 +16,5 @@ namespace RendaFixaExpert.Response
         /// Valor antigo.
         /// </summary>
         public List<decimal>? ListValorAportados { get; set; }
-
-        /// <summary>
-        /// Dias a ser rendidos
-        /// </summary>
-        public int Dias { get; set; }
     }
 }

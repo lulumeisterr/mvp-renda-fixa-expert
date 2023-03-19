@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
-using RendaFixaExpert.App.Presenters.Interfaces;
+﻿using RendaFixaExpert.App.Helpers;
 using RendaFixaExpert.Model;
 
 namespace RendaFixaExpert.App.Presenters
@@ -35,11 +29,11 @@ namespace RendaFixaExpert.App.Presenters
         public async Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(Rentabilidade rentabilidadeRequest)
         {
             List<Rentabilidade> listaRentabilidade = new List<Rentabilidade>();
-            int dias = rentabilidadeRequest.Dias;
-            int auxDias = 1;
             Rentabilidade rentabilidade = new Rentabilidade();
 
-            if (dias > 0 && rentabilidadeRequest.ListValorAportados != null && rentabilidadeRequest.ListValorAportados.Count >= 2)
+            int auxDias = 1;
+    
+            if (rentabilidadeRequest.ListValorAportados != null && rentabilidadeRequest.ListValorAportados.Count >= 2)
             {
                 rentabilidade = new Rentabilidade
                 {
@@ -47,28 +41,17 @@ namespace RendaFixaExpert.App.Presenters
                     ValorAportado = rentabilidadeRequest.ListValorAportados[0],
                     RentabilidadePorDia = 0
                 };
+
                 listaRentabilidade.Add(rentabilidade);
 
                 foreach (var valorAportado in rentabilidadeRequest.ListValorAportados.Skip(1))
                 {
-                    dias = ++auxDias;
-                    rentabilidade = CalcularRentabilidade(dias, listaRentabilidade.Last().ValorAportado, valorAportado);
+                    rentabilidade = CalculosRentabilidadeHelper.CalcularRentabilidadeDiaria(listaRentabilidade.Last().ValorAportado, valorAportado);
+                    rentabilidade.Dias = ++auxDias;
                     listaRentabilidade.Add(rentabilidade);
                 }
             }
             return await Task.FromResult(listaRentabilidade);
         }
-
-        #region Calcular rentabilidade
-        private Rentabilidade CalcularRentabilidade(int dias, decimal valorInicial, decimal valorFinal)
-        {
-            return new Rentabilidade
-            {
-                Dias = dias,
-                ValorAportado = valorFinal,
-                RentabilidadePorDia = ((valorFinal / valorInicial) - 1) * 100
-            };
-        }
-        #endregion
     }
 }
