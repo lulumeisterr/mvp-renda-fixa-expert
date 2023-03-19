@@ -1,8 +1,6 @@
-﻿using System.Security.Cryptography;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RendaFixaExpert.App.Controller.Request;
 using RendaFixaExpert.App.Controller.Response;
-using RendaFixaExpert.App.Presenters.Interfaces;
 using RendaFixaExpert.Model;
 using RendaFixaExpert.Response;
 
