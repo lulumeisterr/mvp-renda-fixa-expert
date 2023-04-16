@@ -1,0 +1,53 @@
+<div class="container">
+
+    <form [formGroup]="formulario">
+
+        <div class="calcularRendimento">
+            <span>Calcular Acumulo do investimento a partir da taxa de rendimento</span>
+            <div class="valores_rendimento">
+                <div>
+                    <div *ngFor="let controlName of formulario.controls | keyvalue">
+                        <input type="text" name="valorRendimento" [formControlName]="controlName.key" placeholder="digite o valor inicial"/>
+                        <button (click)="removerCampoDuplicado(controlName.key)">Remover</button>
+                        <button (click)="duplicarCampo()">Adicionar</button>
+                    </div>
+                </div>
+                <button (click)="calcularAcumuloInvestimento()">Calcular rentabilidade</button>
+                <button (click)="limparDados()">Limpar dados</button>
+            </div>
+        </div>
+ <hr>
+        <div class="calcularRentabilidade">
+            <span>Calcular rentabilidade entre dois valores</span>
+            <div class="valores_rentabilidade">
+                <div>
+                    <input type="text" name="valor_1" placeholder="digite o valor inicial"/>
+                </div>
+                <div>
+                    <input type="text" name="valor_2" placeholder="digite o valor final"/>
+                </div>
+                <button>Calcular rentabilidade</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="table-container" *ngIf="mostrarResposta">
+    <table>
+        <thead>
+            <tr>
+              <th>Valor Aportado</th>
+              <th>Rentabilidade</th>
+              <th>dias</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of response">
+              <td>{{item.valorAportado}}</td>
+              <td>{{item.rentabilidadePorDia}}</td>
+              <td>{{item.dias}}</td>
+            </tr>
+          </tbody>
+      </table>
+</div>
