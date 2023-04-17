@@ -9,10 +9,32 @@
     <form [formGroup]="formulario" class="calculo-rentabilidade-1">
         <h1>Rentabilidade dinâmica</h1>
         <div class="calcularRendimento-container">
-            <div class="items" *ngFor="let controlName of campos; let last = last ">
-                <input type="text" name="valorRendimento" [formControlName]="controlName" placeholder="Digite o valor inicial" [ngClass]="{'campo-invalido': campoInvalido}"/>
-                <button (click)="removerCampoDuplicado(controlName)">Remover</button>
-                <button  *ngIf="last" (click)="adicionar()">Adicionar</button>
+            
+            <div class="item-container">
+                <div class="items" *ngFor="let controlName of campos; let last = last ">
+                    <input type="text" name="valorRendimento" [formControlName]="controlName" placeholder="Digite o valor inicial" [ngClass]="{'campo-invalido': campoInvalido}"/>
+                    <button (click)="removerCampoDuplicado(controlName)">Remover</button>
+                    <button  *ngIf="last" (click)="adicionar()">Adicionar</button>
+                </div>
+
+                <div class="table-container" *ngIf="mostrarResposta">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                              <th>Porte</th>
+                              <th>Rentabilidade %</th>
+                              <th>dias</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of response">
+                              <td>{{item.valorAportado}}</td>
+                              <td>{{item.rentabilidadePorDia}}</td>
+                              <td>{{item.dias}}</td>
+                            </tr>
+                          </tbody>
+                      </table>
+                </div>
             </div>
         </div>
 
@@ -26,22 +48,3 @@
         </form>
 </section>
 
-
-<div class="table-container" *ngIf="mostrarResposta">
-    <table>
-        <thead>
-            <tr>
-              <th>Valor Aportado</th>
-              <th>Rentabilidade</th>
-              <th>dias</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of response">
-              <td>{{item.valorAportado}}</td>
-              <td>{{item.rentabilidadePorDia}}</td>
-              <td>{{item.dias}}</td>
-            </tr>
-          </tbody>
-      </table>
-</div>

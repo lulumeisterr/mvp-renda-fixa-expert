@@ -12,7 +12,7 @@ export class CalculosComponent {
   formulario: FormGroup;
   mostrarResposta : boolean = false;
   response : any[] = [];
-  campos: string[] = ['campo-1'];
+  campos: string[] = ['campo1'];
   campoInvalido = false;
 
   constructor(private calculoService: CalculoService) {
@@ -40,7 +40,12 @@ export class CalculosComponent {
   }
 
   adicionar(){
-    const newControlName = 'campo-' + (this.campos.length + 1);
+    let newControlName = 'campo' + (this.campos.length + 1);
+
+    if ( this.formulario?.get(newControlName) ) {
+      newControlName = Object.keys(this.formulario.value)[0].replace(Object.keys(this.formulario.value)[0],"") + "campo" + (this.campos.length + 2);
+    }
+
     const newControl = new FormControl('');
     this.formulario.addControl(newControlName, newControl);
     this.campos.push(newControlName);
