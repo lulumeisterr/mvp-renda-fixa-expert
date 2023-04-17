@@ -1,11 +1,116 @@
-.table-container {
+.sobre { 
+    border-bottom: 2px solid #2c70ff;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 5px 0;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
 
-    table {
-        border: 1px solid black;
+    .sobre-info {
+        flex : 1;
+        margin: 0 10px;
+    }
+
+    .sobre-info h1 {
+        font-size: 3em;
+        margin-bottom: .5em;
+    }
+
+    .sobre-info p {
+        font-family: 1.25em;
+        line-height: 1.4;
+        margin-bottom: 1em;
+        color : #7c7c7c;
     }
 }
+
+.calculo-rentabilidade-1 {
+    max-width: 960px;
+    margin: 30px auto;
+}
+
+
+.calcularRendimento-container {
+
+    padding: 10px 0px;
+    border-radius: 8px;
+    border : 1px solid #8080805c;
+
+    .items  {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: space-around;
+
+        input {
+            cursor: text;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 0 16px;
+            height: 48px;
+            background-color: #fff;
+            border: 1px solid #d6d6e7;
+            border-radius: 3px;
+            color: rgb(35, 38, 59);
+            box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
+            overflow: hidden;
+            transition: all 100ms ease-in-out;
+            :focus {
+                border-color: #3c4fe0;
+                box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+            }
+        
+        }
+        button {
+            
+            display: inline-block;
+            outline: 0;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #babfc3;
+            padding: 7px 16px;
+            min-height: 36px;
+            min-width: 36px;
+            color: #202223;
+            background: #ffffff;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+            :hover {
+                background: #f6f6f7;
+                outline: 1px solid transparent;
+            }
+        
+        }
+    }
+ }
+
+ .btns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+
+    button {
+
+        cursor: pointer;
+        border: none;
+        padding: 0 56px;
+        line-height: 45px;
+        border-radius: 7px;
+        background-color: #0070f3;
+        color: white;
+        font-weight: 400;
+        font-size: 16px;
+
+        :hover{
+            background: rgba(0,118,255,0.9);
+            box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+        }
+    }
+ }
+
+ .campo-invalido {
+    border: 1px solid red !important;
+ }

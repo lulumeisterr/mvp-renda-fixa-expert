@@ -1,24 +1,31 @@
-<div class="container">
+<section class="sobre">
+    <div class="sobre-info">
+        <h1>Sobre</h1>
+        <p>Aprendendo conceitos e calculos de renda fixa por meio de programação <br> criando um projeto de código aberto que visa ajudar os investidores a tomar decisões informadas no mercado de renda fixa no Brasil.</p>
+    </div>
+</section>
 
-    <form [formGroup]="formulario">
-
-        <div class="calcularRendimento">
-            <span>Calcular rentabilidade entre aportes</span>
-            <div class="valores_rendimento">
-                <div>
-                    <div *ngFor="let controlName of formulario.controls | keyvalue">
-                        <input type="text" name="valorRendimento" [formControlName]="controlName.key" placeholder="digite o valor inicial"/>
-                        <button (click)="removerCampoDuplicado(controlName.key)">Remover</button>
-                    </div>
-                </div>
-                <button (click)="calcularAcumuloInvestimento()">Calcular rentabilidade</button>
-                <button (click)="limparDados()">Limpar dados</button>
-                <button (click)="duplicarCampo()">Adicionar</button>
+<section>
+    <form [formGroup]="formulario" class="calculo-rentabilidade-1">
+        <h1>Rentabilidade dinâmica</h1>
+        <div class="calcularRendimento-container">
+            <div class="items" *ngFor="let controlName of campos; let last = last ">
+                <input type="text" name="valorRendimento" [formControlName]="controlName" placeholder="Digite o valor inicial" [ngClass]="{'campo-invalido': campoInvalido}"/>
+                <button (click)="removerCampoDuplicado(controlName)">Remover</button>
+                <button  *ngIf="last" (click)="adicionar()">Adicionar</button>
             </div>
         </div>
-    </form>
 
-</div>
+        <br>
+
+        <div class="btns">
+            <button  (click)="limparDados()">Limpar dados</button>
+            <button  (click)="calcularAcumuloInvestimento()">Calcular Rentabilidade</button>
+        </div>
+
+        </form>
+</section>
+
 
 <div class="table-container" *ngIf="mostrarResposta">
     <table>

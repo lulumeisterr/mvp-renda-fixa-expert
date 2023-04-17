@@ -4,6 +4,7 @@
     {
         public static IServiceCollection AddDependenciasNegocio(this IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddTransient<ICalculosInvestimentos, InvestimentoPresenterServices>();
             services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
             return services;

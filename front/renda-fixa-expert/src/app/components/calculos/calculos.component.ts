@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CalculoService } from './service-calculos';
 
 @Component({
@@ -12,44 +12,53 @@ export class CalculosComponent {
   formulario: FormGroup;
   mostrarResposta : boolean = false;
   response : any[] = [];
+  campos: string[] = ['campo-1'];
+  campoInvalido = false;
 
   constructor(private calculoService: CalculoService) {
     this.formulario = new FormGroup({
-      campo: new FormControl()
+      campo1: new FormControl('',Validators.required)
     });
   }
 
   calcularAcumuloInvestimento() {
-    this.calculoService.getAcumuloInvestimento({listValorAportados : this.criarObjetoParaRequisicao()}).subscribe(data => {
-      if(data) {
-        this.response = data;
-        this.mostrarResposta = true;
-      }
-    });
-  }
-
-  duplicarCampo(){
-    const controls = this.formulario.controls;
-    for (const controlName in controls) {
-      if (controlName.startsWith('campo')) {
-        const novoCampo = new FormControl();
-        this.formulario.addControl('campo' + (Object.keys(this.formulario.controls).length + 1), novoCampo);
-        break;
-      }
+    if (this.formulario.valid) {
+      this.calculoService.getAcumuloInvestimento({listValorAportados : this.criarObjetoParaRequisicao()}).subscribe(data => {
+        if(data) {
+          this.response = data;
+          this.mostrarResposta = true;
+          this.campoInvalido = false;
+        }
+      });
+    } else {
+      this.campos.forEach(controlName => {
+        if (!this.formulario?.get(controlName)?.value) {
+          this.campoInvalido = true;
+        }
+      });
     }
   }
 
-  removerCampoDuplicado(key: string) {
-    if (Object.keys(this.formulario.controls).length > 1) {
-      this.formulario.removeControl(key);
+  adicionar(){
+    const newControlName = 'campo-' + (this.campos.length + 1);
+    const newControl = new FormControl('');
+    this.formulario.addControl(newControlName, newControl);
+    this.campos.push(newControlName);
+    this.campoInvalido = false;
+  }
+
+  removerCampoDuplicado(controlName: string) {
+    if (this.campos.length > 1) {
+      this.formulario.removeControl(controlName);
+      this.campos = this.campos.filter(c => c !== controlName);
     }
   }
-  
+
   limparDados() {
     this.mostrarResposta = false;
-    Object.keys(this.formulario.controls).forEach(key => {
-      this.formulario.get(key)?.setValue('');
-    });
+    this.campos.forEach(controlName => this.formulario.removeControl(controlName));
+    this.campos = ['campo1'];
+    this.campoInvalido = false;
   }
 
 
@@ -63,7 +72,7 @@ export class CalculosComponent {
         valores.push(parseFloat(control.value));
       }
     }
-    return valores;
+    return valores.filter(Boolean);
   }
   //#endregion
 

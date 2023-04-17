@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RendaFixaExpert.App.Controller.Request;
 using RendaFixaExpert.App.Controller.Response;
 using RendaFixaExpert.Model;
@@ -17,11 +19,13 @@ namespace RendaFixaExpert.App.Controller
     {
         //Injeção de dependência.
         private readonly ICalculosInvestimentos _presenter;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         //Construtor
-        public InvestimentoController(ICalculosInvestimentos presenter)
+        public InvestimentoController(ICalculosInvestimentos presenter, IHttpContextAccessor httpContextAccessor)
         {
             _presenter = presenter;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -48,17 +52,23 @@ namespace RendaFixaExpert.App.Controller
         [HttpPost("/api/investimentos/rentabilidades")]
         public async IAsyncEnumerable<CalcularTaxaRentabilidadeResponseDTO> CalcularTaxaRentabilidadeAsync([FromBody] CalcularTaxaRentabilidadeRequest request)
         {
-            Rentabilidade rentabilidade = new Rentabilidade { ListValorAportados = request.ListValorAportados };
+            HttpContext httpContext = _httpContextAccessor.HttpContext;
+            CalcularTaxaRentabilidadeRequest rentabilidade = new CalcularTaxaRentabilidadeRequest { ListValorAportados = request.ListValorAportados };
             List<Rentabilidade> listaRentabilidade = await _presenter.CalcularTaxaRentabilidadeAsync(rentabilidade);
 
-            foreach (Rentabilidade item in listaRentabilidade)
-            {
-                yield return new CalcularTaxaRentabilidadeResponseDTO
+            if (listaRentabilidade.Count > 0 ) { 
+                foreach (Rentabilidade item in listaRentabilidade)
                 {
-                    Dias = item.Dias,
-                    ValorAportado = item.ValorAportado,
-                    RentabilidadePorDia = item.RentabilidadePorDia
-                };
+                    yield return new CalcularTaxaRentabilidadeResponseDTO
+                    {
+                        Dias = item.Dias,
+                        ValorAportado = item.ValorAportado,
+                        RentabilidadePorDia = item.RentabilidadePorDia
+                    };
+                }
+            } else
+            {
+                httpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
             }
         }
     }

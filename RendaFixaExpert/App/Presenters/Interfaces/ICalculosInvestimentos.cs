@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RendaFixaExpert.Model;
+using RendaFixaExpert.Response;
 
 namespace RendaFixaExpert.App.Presenters.Interfaces
 {
@@ -17,7 +18,7 @@ namespace RendaFixaExpert.App.Presenters.Interfaces
         /// </summary>
         /// <param name="rentabilidadeRequest">Rentabilidade</param>
         /// <returns>CalcularTaxaRentabilidade</returns>
-        Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(Rentabilidade rentabilidadeRequest);
+        Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(CalcularTaxaRentabilidadeRequest rentabilidadeRequest);
 
         /// <summary>
         /// Identificar total de investimento a partir da taxa de rendimento.

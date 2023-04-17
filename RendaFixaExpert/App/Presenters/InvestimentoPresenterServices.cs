@@ -1,5 +1,6 @@
 ﻿using RendaFixaExpert.App.Helpers;
 using RendaFixaExpert.Model;
+using RendaFixaExpert.Response;
 
 namespace RendaFixaExpert.App.Presenters
 {
@@ -26,7 +27,7 @@ namespace RendaFixaExpert.App.Presenters
         /// </summary>
         /// <param name="rentabilidadeRequest"></param>
         /// <returns>CalcularTaxaRentabilidadeAsync</returns>
-        public async Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(Rentabilidade rentabilidadeRequest)
+        public async Task<List<Rentabilidade>> CalcularTaxaRentabilidadeAsync(CalcularTaxaRentabilidadeRequest rentabilidadeRequest)
         {
             List<Rentabilidade> listaRentabilidade = new List<Rentabilidade>();
             Rentabilidade rentabilidade = new Rentabilidade();
